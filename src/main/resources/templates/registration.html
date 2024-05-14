@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <div th:replace="/fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="/fragments/header :: header"/>
+
+<div class="container mt-5">
+    <!-- Show this info message only if registered successfully -->
+    <div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}"></div>
+
+    <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-8 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Registration</h3>
+                </div>
+                <div class="card-body">
+                    <form autocomplete="off" th:action="@{/registration}" th:object="${user}" method="post">
+
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" th:field="*{name}" placeholder="Name"
+                                   class="form-control" required/>
+                            <div th:if="${#fields.hasErrors('name')}" class="alert alert-danger" th:errors="*{name}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" th:field="*{lastName}" placeholder="Last Name"
+                                   class="form-control" required/>
+                            <div th:if="${#fields.hasErrors('lastName')}" class="alert alert-danger" th:errors="*{lastName}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" th:field="*{email}" placeholder="Email"
+                                   class="form-control" required/>
+                            <div th:if="${#fields.hasErrors('email')}" class="alert alert-danger" th:errors="*{email}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" th:field="*{password}" placeholder="Password"
+                                   class="form-control" required/>
+                            <div th:if="${#fields.hasErrors('password')}" class="alert alert-danger" th:errors="*{password}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" th:field="*{username}" placeholder="Username"
+                                   class="form-control" required/>
+                            <div th:if="${#fields.hasErrors('username')}" class="alert alert-danger" th:errors="*{username}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="/fragments/footer :: footer"/>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
